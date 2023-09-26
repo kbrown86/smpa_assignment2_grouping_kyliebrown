@@ -86,22 +86,16 @@ payments %>%
  group_by(disbursement_year) %>%
   summarise(total_spent = sum(disbursement_amount))
 
-
-
-
-
-
-
 ```
 
 Tally the total overall disbursement amounts for each month (distinguishing between say, Oct. 2018 v. Oct. 2019). In which month was spending the highest?
 
 ```{r}
 
-
-
-
-
+# group by disbursement month and disbursement year - highest spending month in Jan. 2017
+payments %>%
+ group_by(disbursement_month, disbursement_year) %>%
+  summarise(total_spent = sum(disbursement_amount))
 
 ```
 
@@ -109,11 +103,15 @@ Which recipient (recipient_name) was paid the most in the 2020 election cycle?
 
 ```{r}
 
+#
 
-
-
-
-
+#filter election cycle to be 2020 and then group by recipient name and create total spent column on totals spent, slice top 10 amount of money received
+payments %>% 
+  filter(election_cycle == 2020) %>%
+  group_by(recipient_name) %>%
+  summarise(total_spent = sum(disbursement_amount)) %>%
+  slice_max(total_spent, n = 10)
+  
 
 ```
 
