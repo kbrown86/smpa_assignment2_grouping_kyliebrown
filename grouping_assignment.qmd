@@ -119,8 +119,12 @@ Look at what this recipient was paid for. What service or good (see the "disburs
 
 ```{r}
 
-
-
+# filter to top recipient, group by description, summarise total spending and slice descriptions with top 10 highest spending - service was placed media
+payments %>% 
+  filter(recipient_name == "AMERICAN MADE MEDIA CONSULTANTS, LLC") %>%
+  group_by(disbursement_description) %>%
+  summarise(total_spent = sum(disbursement_amount)) %>%
+  slice_max(total_spent, n = 10)
 
 
 
@@ -130,10 +134,12 @@ What's the most common category overall (see "disbursement_description") the cam
 
 ```{r}
 
-
-
-
-
+# do same thing as above besides filtering top recipient - most common category was digital consulting/online advertising
+payments %>%
+  group_by(disbursement_description) %>%
+  summarise(total_spent = sum(disbursement_amount)) %>%
+  slice_max(total_spent, n = 10)
+  
 
 ```
 
@@ -141,10 +147,12 @@ Who were the 5 biggest recipients of campaign spending on "LEGAL CONSULTING"..?
 
 ```{r}
 
-
-
-
-
+# filter disbursement description to legal consulting and then group by recipient name and take sum of spending
+payments %>%
+  filter(disbursement_description == "LEGAL CONSULTING") %>%
+  group_by(recipient_name) %>%
+  summarise(total_spent = sum(disbursement_amount)) %>%
+  slice_max(total_spent, n = 5)
 
 
 ```
@@ -153,12 +161,12 @@ Who were the 5 biggest recipients of campaign spending on "LEGAL CONSULTING"..?
 Who are the top 5 individuals (vs. organization) were paid by the campaign committee?
 
 ```{r}
-
-
-
-
-
-
+# same thing as above but filter entity type to be for individuals instead of organizations
+payments %>%
+  filter(entity_type == "IND") %>%
+  group_by(recipient_name) %>%
+  summarise(total_spent = sum(disbursement_amount)) %>%
+  slice_max(total_spent, n = 5)
 
 ```
 
@@ -166,6 +174,13 @@ Who are the top 5 individuals (vs. organization) were paid by the campaign commi
 For the indvidual who was paid the most, which payment category (disbursement_description) was the top one for him or her? And how much money were they paid in that category?
 
 ```{r}
+
+# filter to be for the top individual and group by disbursement and summarise total disbursement amount - top was payroll and 499000.00 spent
+payments %>% 
+  filter(recipient_name == "GLASSNER, MICHAEL") %>%
+  group_by(disbursement_description) %>%
+  summarise(total_spent = sum(disbursement_amount)) %>%
+  slice_max(total_spent, n = 10)
 
 
 
