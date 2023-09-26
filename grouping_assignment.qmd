@@ -1,6 +1,6 @@
 ---
 title: "SMPA - Grouping Assignment"
-author: "YourNameHere"
+author: "Kylie Brown"
 date: "`r format(Sys.time(), '%B %d, %Y')`"
 format:
   html:
@@ -61,11 +61,11 @@ Take a moment to look at the various categories included for each disbursement.
 
 Without doing any analysis yet, what are three questions you might try to answer using this dataset? Write your narrative answers in the spaces below.
 
-1.  
+1.  During what month were the most disbursements made?
 
-2.  
+2.  What organization/recepient received the most payments?
 
-3.  
+3.  What year had the most spending?
 
 ## Coding Assignment Questions
 
