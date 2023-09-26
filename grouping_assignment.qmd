@@ -81,6 +81,11 @@ How much was spent in the 2017 vs. 2018 reporting year?
 
 ```{r}
 
+# group by disbursement year and then summarise the total spent - 17082338 in 2017 and 37212716	in 2018
+payments %>%
+ group_by(disbursement_year) %>%
+  summarise(total_spent = sum(disbursement_amount))
+
 
 
 
